@@ -1,17 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Header msg="PT. Sukamaju"/>
+  <Chart id="Chart" v-bind:chartData="this.state.chartData" v-bind:chartOptions="this.state.chartOptions" />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/Header'
+import { defineComponent } from 'vue'
+import Chart from './components/Chart'
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    Header, Chart
+  },
+  data () {
+    return {
+      state: {
+        chartData: {
+          datasets: [
+            {
+              label: 'HS Code',
+              data: [{x: -10,y: 0}, {x: 0,y: 10}, {x: 10,y: 5}, {x: 0.5,y: 5.5}],
+              backgroundColor: 'rgb(255, 99, 132)'
+            }
+          ],
+        },
+        chartOptions: {
+          responsive: false
+        }
+      }
+    }
   }
-}
+})
 </script>
 
 <style>
@@ -19,8 +39,17 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
+  margin-left: 50px;
 }
+
+#Chart {
+  border:2px;
+  border-style:solid;
+  border-color: rgb(165, 165, 165);
+  width: min-content;
+}
+
 </style>
